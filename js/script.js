@@ -14,7 +14,7 @@ function galleryImg(ourPictures) {
     li.classList.add("gallery__item");
     const a = document.createElement("a");
     a.classList.add("gallery__link");
-    // a.href = ourPictures.original;
+     a.href = ourPictures.original;
     const img = document.createElement("img");
     img.classList.add("gallery__image");
     img.src = ourPictures.preview;
@@ -31,12 +31,14 @@ function galleryImg(ourPictures) {
 
 
   console.log(list);
+  // 
 
   function openModal(e)
   {
+    e.preventDefault();
     lightBox.classList.add('is-open');
     modalImage.src = e.target.dataset.source;
-    console.log(modalImage.src);
+    
   }
 
   function closeModal(e)
