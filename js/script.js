@@ -18,7 +18,7 @@ function galleryImg(ourPictures) {
     const img = document.createElement("img");
     img.classList.add("gallery__image");
     img.src = ourPictures.preview;
-    img.srcset = ourPictures.original;
+    img.dataset.source = ourPictures.original;
     img.alt = ourPictures.description;
     list.append(li);
     li.append(a);
@@ -35,7 +35,7 @@ function galleryImg(ourPictures) {
   function openModal(e)
   {
     lightBox.classList.add('is-open');
-    modalImage.src = e.target.srcset;
+    modalImage.src = e.target.dataset.source;
     console.log(modalImage.src);
   }
 
@@ -64,7 +64,8 @@ function galleryImg(ourPictures) {
     closeModal();
   }
 
-  closeBtn.addEventListener("click", closeModal)
+  
   list.addEventListener("click", openModal)
+  closeBtn.addEventListener("click", closeModal)
   window.addEventListener("keydown", escapeExit)
   content.addEventListener("click", backdropClick);
