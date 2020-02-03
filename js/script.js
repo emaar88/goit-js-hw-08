@@ -5,6 +5,8 @@ const list = document.querySelector(".js-gallery");
 const lightBox = document.querySelector('.js-lightbox');
 const modalImage = document.querySelector(".lightbox__image");
 const closeBtn = document.querySelector('button[data-action="close-lightbox"]');
+const backDrop = document.querySelector(".lightbox__overlay");
+const content = document.querySelector(".lightbox__content");
 
 
 function galleryImg(ourPictures) {
@@ -23,14 +25,14 @@ function galleryImg(ourPictures) {
   const createGallery = ourPictures.map(drawImg => galleryImg(drawImg));
   list.append(...createGallery);
   list.classList.add("gallery");
-  // gallery.append(list);
 
-  console.log(list);
+  
 
-  function handleClick(e)
+  function openModal(e)
   {
     lightBox.classList.add('is-open');
     modalImage.src = e.target.srcset;
+    console.log(modalImage.src);
   }
 
   function closeModal(e)
@@ -40,11 +42,12 @@ function galleryImg(ourPictures) {
 
   function backdropClick (event)
   {
-    if (event.target !== event.currentTarget)
-    {
-      return
-    }
-    closeModal();
+
+   if (event.target !== event.currentTarget)
+   {
+     return
+   }
+   closeModal();
   }
 
 
@@ -57,9 +60,7 @@ function galleryImg(ourPictures) {
     closeModal();
   }
 
-
   closeBtn.addEventListener("click", closeModal)
-  list.addEventListener("click", handleClick)
+  list.addEventListener("click", openModal)
   window.addEventListener("keydown", escapeExit)
-  
-  modalImage.addEventListener("click", backdropClick);
+  content.addEventListener("click", backdropClick);
