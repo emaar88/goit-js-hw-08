@@ -8,6 +8,7 @@ const closeBtn = document.querySelector('button[data-action="close-lightbox"]');
 const backDrop = document.querySelector(".lightbox__overlay");
 const content = document.querySelector(".lightbox__content");
 
+
 function galleryImg(ourPictures) {
     const li = document.createElement("li");
     li.classList.add("gallery__item");
@@ -22,6 +23,10 @@ function galleryImg(ourPictures) {
   }
   
    const createGallery = ourPictures.map(drawImg => galleryImg(drawImg));
+  list.append(...createGallery);
+
+
+  
 
   function openModal(e)
   {
