@@ -12,13 +12,17 @@ const content = document.querySelector(".lightbox__content");
 function galleryImg(ourPictures) {
     const li = document.createElement("li");
     li.classList.add("gallery__item");
+    const a = document.createElement("a");
+    a.classList.add("gallery__link");
+    // a.href = ourPictures.original;
     const img = document.createElement("img");
     img.classList.add("gallery__image");
     img.src = ourPictures.preview;
     img.srcset = ourPictures.original;
     img.alt = ourPictures.description;
     list.append(li);
-    li.append(img);
+    li.append(a);
+    a.append(img);
     return li;
   }
   
@@ -26,7 +30,7 @@ function galleryImg(ourPictures) {
   list.append(...createGallery);
 
 
-  
+  console.log(list);
 
   function openModal(e)
   {
