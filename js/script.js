@@ -1,5 +1,6 @@
 "use script";
 import ourPictures from "./gallery-items.js";
+// console.log(ourPictures[0].preview);
 
 const list = document.querySelector(".js-gallery");
 const lightBox = document.querySelector(".js-lightbox");
@@ -7,24 +8,29 @@ const modalImage = document.querySelector(".lightbox__image");
 const closeBtn = document.querySelector('button[data-action="close-lightbox"]');
 const content = document.querySelector(".lightbox__content");
 
-function galleryImg(ourPictures) {
-  const li = document.createElement("li");
-  const a = document.createElement("a");
+function createImg(el) {
   const img = document.createElement("img");
-  li.classList.add("gallery__item");
+  img.classList.add("gallery__image");
+  img.src = el.preview;
+  img.dataset.source = el.original;
+  img.alt = el.description;
+  return img;
+}
+function createLink(obj) {
+  const a = document.createElement("a");
   a.classList.add("gallery__link");
   a.href = ourPictures.original;
-  img.classList.add("gallery__image");
-  img.src = ourPictures.preview;
-  img.dataset.source = ourPictures.original;
-  img.alt = ourPictures.description;
-  list.append(li);
-  li.append(a);
-  a.append(img);
+  a.append(createImg(obj));
+  return a;
+}
+function createLi(obj) {
+  const li = document.createElement("li");
+  li.classList.add("gallery__item");
+  li.append(createLink(obj));
   return li;
 }
 
-const createGallery = ourPictures.map(drawImg => galleryImg(drawImg));
+const createGallery = ourPictures.map(drawImg => createLi(drawImg));
 list.append(...createGallery);
 
 function openModal(e) {
