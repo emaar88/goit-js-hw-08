@@ -27,9 +27,6 @@ function galleryImg(ourPictures) {
 const createGallery = ourPictures.map(drawImg => galleryImg(drawImg));
 list.append(...createGallery);
 
-console.log(list);
-//
-
 function openModal(e) {
   e.preventDefault();
   lightBox.classList.add("is-open");
@@ -38,6 +35,7 @@ function openModal(e) {
 
 function closeModal(e) {
   lightBox.classList.remove("is-open");
+  modalImage.src = "";
 }
 
 function backdropClick(event) {
